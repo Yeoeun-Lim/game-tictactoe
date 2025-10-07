@@ -20,7 +20,7 @@ CIRCLE_COLOR = (239, 231, 200)
 CROSS_COLOR = (66, 66, 66)
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Tic Tac Toe (Fixed)")
+pygame.display.set_caption("Tic Tac Toe (AI)")
 screen.fill(BG_COLOR)
 
 board = [[0 for _ in range(BOARD_COLS)] for _ in range(BOARD_ROWS)]
@@ -95,7 +95,7 @@ def restart():
 
 # --- “적당히 똑똑한 AI” ---
 def ai_move():
-    # 1️⃣ 이길 수 있는 자리 있으면 이기기
+    # 이길 수 있는 자리 있으면 이기기
     for r in range(BOARD_ROWS):
         for c in range(BOARD_COLS):
             if available_square(r, c):
@@ -104,7 +104,7 @@ def ai_move():
                     board[r][c] = 0
                     return (r, c)
                 board[r][c] = 0
-    # 2️⃣ 플레이어가 이길 수 있는 자리 막기
+    # 플레이어가 이길 수 있는 자리 막기
     for r in range(BOARD_ROWS):
         for c in range(BOARD_COLS):
             if available_square(r, c):
@@ -113,7 +113,7 @@ def ai_move():
                     board[r][c] = 0
                     return (r, c)
                 board[r][c] = 0
-    # 3️⃣ 랜덤
+    # 랜덤
     empty = [(r, c) for r in range(BOARD_ROWS) for c in range(BOARD_COLS) if available_square(r, c)]
     return random.choice(empty) if empty else None
 
